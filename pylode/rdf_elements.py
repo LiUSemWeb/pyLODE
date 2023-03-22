@@ -10,6 +10,7 @@ from rdflib.namespace import (
 )
 
 ONTDOC = Namespace("https://w3id.org/profile/ontdoc/")
+ODP = Namespace("http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#")
 
 # metadata properties for OWL Ontology instances
 ONT_PROPS = [
@@ -33,6 +34,7 @@ ONT_PROPS = [
     SKOS.note,
     DCTERMS.description,
     ONTDOC.restriction,
+    ODP.coversRequirements
 ]
 
 # properties for OWL Class instances
