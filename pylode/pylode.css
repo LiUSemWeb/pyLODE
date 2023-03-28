@@ -271,3 +271,8 @@ td {
 #legend table.entity {
     width: 25%;
 }
+
+/* hide duplicate restictions bug */
+#content > span {
+    display: none;
+}
