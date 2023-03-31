@@ -743,6 +743,29 @@ def prop_obj_pair_html(
 
     return t
 
+def named_individuals_html(
+    ont: Graph,
+    back_onts: Graph,
+    ns: Tuple[str, str],
+    iri: URIRef,
+    fids
+):
+    """Add table row for all named individuals of given RDF class"""
+    individuals = []
+    for obj in ont.subjects(predicate=RDF.type, object=iri):
+        individuals.append(obj)
+    if not individuals:
+        return ""
+    prop = a(
+        "Named Individuals",
+        title="Named Individuals. Defined in The OWL 2 Schema vocabulary (OWL 2)",
+        _class="hover_property",
+        href=str(OWL.NamedIndividual)
+    )
+    return tr(
+        th(prop),
+        td(rdf_obj_html(ont, back_onts, ns, individuals, fids, OWL.NamedIndividual))
+    )
 
 def section_html(
     section_title: str,
@@ -811,6 +834,7 @@ def section_html(
                             this_props_[prop],
                         )
                     )
+        t.appendChild(named_individuals_html(ont_, back_onts_, ns_, iri, fids_))
         d.appendChild(t)
         return d
 
