@@ -644,10 +644,14 @@ def rdf_obj_html(
                                         )
                                     ),
                                 )
-
-            restriction = span(prop, card, br()) if card is not None else prop
+            _o = span(
+                    _hyperlink_html(
+                        ont__, back_onts_, ns__, o, fids_, OWL.Class
+                    )
+                )
+            restriction = span(prop, card, _o) if card is not None else prop
             restriction = (
-                span(restriction, cls, br()) if cls is not None else restriction
+                span(restriction, cls, _o) if cls is not None else restriction
             )
 
             return span(restriction) if restriction is not None else "None"
