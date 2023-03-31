@@ -276,3 +276,7 @@ td {
 #content > span {
     display: none;
 }
+
+ul, p {
+    margin: 0;
+}
