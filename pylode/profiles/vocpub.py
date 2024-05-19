@@ -161,6 +161,7 @@ class VocPub:
         # ):
         #     g.add((s_, RDF.type, RDF.Property))
 
+                desired_lang = "en"
         # name
         for s_, o in chain(
             g.subject_objects(DC.title),
@@ -168,8 +169,10 @@ class VocPub:
             g.subject_objects(SKOS.prefLabel),
             g.subject_objects(SDO.name),
         ):
-            g.add((s_, DCTERMS.title, o))
-
+            # Check if the object is a Literal and has the desired language tag
+            if isinstance(o, Literal) and o.language == desired_lang:
+                g.add((s_, DCTERMS.title, o))
+    
         # description
         for s_, o in chain(
             g.subject_objects(DC.description),
@@ -177,7 +180,9 @@ class VocPub:
             g.subject_objects(SKOS.definition),
             g.subject_objects(SDO.description),
         ):
-            g.add((s_, DCTERMS.description, o))
+            # Check if the object is a Literal and has the desired language tag
+            if isinstance(o, Literal) and o.language == desired_lang:
+                g.add((s_, DCTERMS.description, o))
 
         # source
         for s_, o in g.subject_objects(DC.source):
