@@ -161,7 +161,7 @@ class VocPub:
         # ):
         #     g.add((s_, RDF.type, RDF.Property))
 
-                desired_lang = "en"
+        desired_lang = "en"
         # name
         for s_, o in chain(
             g.subject_objects(DC.title),
